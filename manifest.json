@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.reneil1337.venice",
+  "name": "Venice Monitor",
+  "version": "1.0.0",
+  "author": "reneil1337",
+  "license": "MIT",
+  "description": "Feeds Venice account usage into the Omarchy agents panel: token history, per-model usage, request counts, and combined DIEM + USD costs displayed in USD.",
+  "kinds": ["service"],
+  "entryPoints": {
+    "service": "Service.qml"
+  }
+}
