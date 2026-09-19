@@ -6,7 +6,8 @@ a `venice` provider, following the same service-only design as
 
 - Daily token chart and per-model input/output/cache breakdown for the last 7 days.
 - **Usage costs displayed in USD: USD charges + DIEM charges, at 1 DIEM = 1 USD.**
-- Last-7-days cost, tokens, and tracked request count in the provider heading.
+- Last-7-days cost, tokens, and tracked request count in the provider heading
+  (labeled `reqs` to keep the heading readable; counts remain a lower bound).
 - Available credit in USD equivalents and a daily-credit utilization meter.
 - Up to 365 days of token, request, and cost history in the usage record.
 
@@ -150,7 +151,7 @@ instead of the plain ones. Unknown token SKUs are recorded in
 Request counts cover **distinct IDs actually provided by Venice**. Some
 entries, including media usage, have null inference details, so a ledger row
 is not treated as a request. `entriesWithoutRequestId` records that gap, and
-the heading says “tracked req.” Session counts are unavailable. Zero-usage
+the heading says “reqs.” Session counts are unavailable. Zero-usage
 days are filled explicitly, with local calendar boundaries and historical
 daylight-saving offsets. A request spanning midnight is attributed to its
 first ledger day in the selected window; charges retain their ledger dates.

@@ -387,7 +387,7 @@ def build_record(base, key, now, history_days=HISTORY_DAYS, max_pages=MAX_PAGES)
         "scope": "account",
         "hasLocalStats": False,
         "hasPromptStats": today["entriesWithoutRequestId"] == 0,
-        "tierLabel": "%dd: $%.2f USD · %s tokens · %s tracked req" % (
+        "tierLabel": "%dd: $%.2f USD · %s tokens · %s reqs" % (
             len(recent), recent_cost, compact_tokens(recent_tokens), compact_tokens(recent_requests)),
         "usageStatusText": "",
         "authHelpText": "",
