@@ -23,7 +23,10 @@ from pathlib import Path
 
 BASE_URL = "https://api.venice.ai/api/v1"
 DAYS = 7
-HISTORY_DAYS = 365
+# 7 days is everything the stock agents panel renders. Larger windows are
+# opt-in via historyDays: every refresh re-walks the whole window, and busy
+# accounts can exceed the page cap long before 365 days.
+HISTORY_DAYS = 7
 PAGE_SIZE = 1000
 MAX_PAGES = 1000
 STATE_SUBDIR = "omarchy/agents/usage"

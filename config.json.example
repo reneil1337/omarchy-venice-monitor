@@ -1,5 +1,5 @@
 {
   "baseUrl": "https://api.venice.ai/api/v1",
   "apiKey": "",
-  "historyDays": 365
+  "historyDays": 7
 }

@@ -114,7 +114,8 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(record["todayTotalTokens"], 1200)
 
     def test_history_and_model_window_match_and_zero_fill(self):
-        record = self.record([entry(), entry(stamp="2026-09-01T12:00:00Z", request_id="older")])
+        record = self.record([entry(), entry(stamp="2026-09-01T12:00:00Z", request_id="older")],
+                             history_days=365)
         self.assertEqual(len(record["history"]), 365)
         self.assertEqual(len(record["recentDays"]), 7)
         self.assertEqual(record["history"][0]["date"], "2025-09-18")
@@ -124,6 +125,12 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(sum(record["modelUsage"]["test-model"].values()),
                          sum(row["messageCount"] for row in record["recentDays"]))
         self.assertEqual(len(record["modelDaily"]["test-model"]), 2)
+
+    def test_default_window_is_seven_days(self):
+        record = self.record([entry()])
+        self.assertEqual(len(record["history"]), 7)
+        self.assertEqual(record["history"][0]["date"], "2026-09-11")
+        self.assertEqual(record["history"][-1]["date"], "2026-09-17")
 
     def test_one_request_across_midnight_has_one_token_total_and_request(self):
         record = self.record([entry(stamp="2026-09-16T23:59:59Z"),
@@ -264,7 +271,7 @@ class CollectorTests(unittest.TestCase):
             path = Path(directory) / "config.json"
             with patch.dict(os.environ, {"VENICE_API_KEY": " environment-key "}):
                 self.assertEqual(collector.load_config(path),
-                                 (collector.BASE_URL, "environment-key", 365, 1000))
+                                 (collector.BASE_URL, "environment-key", 7, 1000))
                 path.write_text(json.dumps({"apiKey": "file-key", "historyDays": 30}))
                 self.assertEqual(collector.load_config(path)[1:3], ("environment-key", 30))
             self.assertEqual(collector.load_config(path)[1], "file-key")

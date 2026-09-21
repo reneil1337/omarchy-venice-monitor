@@ -9,7 +9,9 @@ a `venice` provider, following the same service-only design as
 - Last-7-days cost, tokens, and tracked request count in the provider heading
   (labeled `reqs` to keep the heading readable; counts remain a lower bound).
 - Available credit in USD equivalents and a daily-credit utilization meter.
-- Up to 365 days of token, request, and cost history in the usage record.
+- Optional longer history (up to 365 days of token, request, and cost data)
+  for panel versions that can render week/month/quarter/year views. The
+  default window is 7 days — see [Sizing historyDays](#sizing-historydays).
 
 A headless service refreshes every **10 minutes** and writes
 `~/.local/state/omarchy/agents/usage/venice.json`. The existing agents panel
@@ -63,7 +65,7 @@ Edit `config.json` and set `apiKey`:
 {
   "baseUrl": "https://api.venice.ai/api/v1",
   "apiKey": "your-venice-api-key",
-  "historyDays": 365
+  "historyDays": 7
 }
 ```
 
@@ -78,8 +80,52 @@ shell service.
 |---|---|---|
 | `baseUrl` | `https://api.venice.ai/api/v1` | Full API base URL, including `/api/v1` |
 | `apiKey` | empty | Key for the account to monitor |
-| `historyDays` | `365` | Local calendar days to retrieve, from 1 to 365 |
+| `historyDays` | `7` | Local calendar days to retrieve, from 1 to 365 |
 | `maxPages` | `1000` | Maximum 1,000-entry pages per walk; configurable from 1 to 10,000 |
+
+### Sizing historyDays
+
+Every refresh re-walks the **entire** configured window, page by page — there
+is no incremental fetch. 7 days is everything the stock `omarchy.agents`
+panel renders (`recentDays`, `modelUsage`, and the 7-day heading), so 7 is
+the default and the right choice for it.
+
+Only raise `historyDays` if your panel actually renders longer views
+(`history` / `modelDaily`), and size it to your account's ledger density:
+dense accounts can produce hundreds of ledger entries per minute, and a
+window whose walk exceeds `maxPages` × 1,000 entries fails with
+
+```
+Usage history exceeds maxPages; increase it or reduce historyDays in config.json
+```
+
+Raising `maxPages` (up to 10,000) only postpones this and makes every
+10-minute refresh slower and heavier. If a refresh gets slow or that error
+appears, reduce `historyDays` — the panel's 7-day view does not change.
+
+To estimate the pages a window needs, walk it once with the API directly
+(continuations send only `cursor`):
+
+```sh
+python3 - <<'EOF'
+import json, os, urllib.request, urllib.parse
+base = "https://api.venice.ai/api/v1"
+key = os.environ["VENICE_API_KEY"]
+params = {"startTimestamp": "2026-08-01T00:00:00.000Z",
+          "endTimestamp": "2026-09-21T00:00:00.000Z", "pageSize": 1000}
+pages = total = 0
+while pages < 200:
+    req = urllib.request.Request(
+        base + "/billing/usage-history?" + urllib.parse.urlencode(params),
+        headers={"Authorization": "Bearer " + key})
+    with urllib.request.urlopen(req) as r:
+        payload = json.load(r)
+    pages += 1; total += len(payload["data"])
+    if not payload["nextCursor"]: break
+    params = {"cursor": payload["nextCursor"]}
+print(pages, "pages,", total, "entries")
+EOF
+```
 
 The API selects the account from the key. Billing history is account-wide,
 rather than restricted to calls made with the monitoring key, and can include
@@ -164,7 +210,8 @@ first ledger day in the selected window; charges retain their ledger dates.
   provides remaining credit and daily allocation.
 - The old `/billing/usage` endpoint was retired on **2026-09-16**.
 - Each refresh walks the entire configured history window. Busy accounts can
-  reduce `historyDays` to reduce API traffic and refresh time. The service
+  reduce `historyDays` to reduce API traffic and refresh time — see
+  [Sizing historyDays](#sizing-historydays). The service
   serializes refreshes, including manual refresh requests.
 - Rate-limit and transient server/network failures are retried. A rejected
   cursor restarts the walk once. Invalid data or a page cap fails the refresh
