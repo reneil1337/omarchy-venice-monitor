@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://api.venice.ai/api/v1",
+  "apiKey": "",
+  "historyDays": 7,
+  "refreshSec": 600
+}

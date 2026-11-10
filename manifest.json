@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.reneil1337.venice",
+  "name": "Venice Monitor",
+  "version": "2.1.0",
+  "author": "reneil1337",
+  "license": "MIT",
+  "description": "Venice account usage — tokens, per-model usage, requests, and combined DIEM + USD costs in USD — with the AI Usage bar panel (a tab per monitor: day, week, month, quarter, and year charts). Also feeds the credit balance to the Omarchy agents panel.",
+  "kinds": ["service", "bar-widget"],
+  "entryPoints": {
+    "service": "Service.qml",
+    "barWidget": "UsagePanel.qml"
+  },
+  "barWidget": {
+    "displayName": "AI Usage (Venice Monitor)",
+    "description": "One panel with a tab per usage monitor (Venice, LiteLLM): totals with trends, tokens over time, tokens by model, and balances. Add only one AI Usage widget; either shows every tab.",
+    "category": "AI",
+    "aliases": ["usage", "ai-usage", "venice", "litellm"],
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

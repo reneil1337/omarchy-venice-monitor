@@ -1,0 +1,75 @@
+{
+  "panel.title": "KI-Nutzung",
+  "panel.noData": "Noch kein Nutzungsverlauf",
+  "panel.noDataHelp": "Installiere das Venice- oder LiteLLM-Monitor-Plugin; sein Nutzungsverlauf erscheint hier nach der ersten Aktualisierung.",
+  "panel.refreshing": "Wird aktualisiert…",
+  "panel.updatedJustNow": "Gerade aktualisiert",
+  "panel.updatedMinutes": {
+    "one": "Vor %1 Minute aktualisiert",
+    "other": "Vor %1 Minuten aktualisiert"
+  },
+  "panel.updatedHours": {
+    "one": "Vor %1 Stunde aktualisiert",
+    "other": "Vor %1 Stunden aktualisiert"
+  },
+  "panel.updatedDays": {
+    "one": "Vor %1 Tag aktualisiert",
+    "other": "Vor %1 Tagen aktualisiert"
+  },
+  "action.refresh": "Aktualisieren",
+  "range.week": "Woche",
+  "range.month": "Monat",
+  "range.quarter": "Quartal",
+  "range.year": "Jahr",
+  "stat.tokens": "Tokens",
+  "stat.requests": "Anfragen",
+  "stat.cost": "Kosten",
+  "stat.perDay": "Pro Tag",
+  "stat.activeDays": {
+    "one": "%1 aktiver Tag",
+    "other": "%1 aktive Tage"
+  },
+  "trend.flat": "± 0 %",
+  "trend.percent": "%1 %",
+  "previous.week": "Vorherige 7 Tage: %1",
+  "previous.month": "Vorherige 30 Tage: %1",
+  "previous.quarter": "Vorherige 13 Wochen: %1",
+  "previous.year": "Vorherige 12 Monate: %1",
+  "section.balance": "Guthaben",
+  "section.byDay": "Tokens pro Tag",
+  "section.byWeek": "Tokens pro Woche",
+  "section.byMonth": "Tokens pro Monat",
+  "section.byModel": "Tokens pro Modell",
+  "balance.credits": "Verbleibendes Guthaben",
+  "balance.spent": "%1 von %2 verbraucht",
+  "balance.spentEstimated": "%1 von %2 verbraucht · geschätzt",
+  "chart.today": "Heute",
+  "chart.thisWeek": "Diese Woche",
+  "chart.thisMonth": "Dieser Monat",
+  "chart.peak": "Spitze %1 · %2",
+  "tooltip.tokens": {
+    "one": "%1 Token",
+    "other": "%1 Tokens"
+  },
+  "tooltip.requests": {
+    "one": "%1 Anfrage",
+    "other": "%1 Anfragen"
+  },
+  "tooltip.notRecorded": "Nicht erfasst",
+  "tooltip.partial": "%1 von %2 Tagen erfasst",
+  "model.count": {
+    "one": "%1 Modell",
+    "other": "%1 Modelle"
+  },
+  "model.share": "%1 % der Tokens",
+  "model.split": "Eingabe %1 · Ausgabe %2 · Cache gelesen %3 · Cache geschrieben %4",
+  "model.more": {
+    "one": "+%1 weiteres Modell · %2",
+    "other": "+%1 weitere Modelle · %2"
+  },
+  "caption.week": "Rollierende 7 Tage · %1 – %2",
+  "caption.month": "Rollierende 30 Tage · %1 – %2",
+  "caption.quarter": "13 Kalenderwochen · %1 – %2",
+  "caption.year": "12 Kalendermonate · %1 – %2",
+  "caption.note": "Die Summen entsprechen den Tagen im Diagramm."
+}

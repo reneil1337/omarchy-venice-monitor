@@ -1,0 +1,75 @@
+{
+  "panel.title": "AI Usage",
+  "panel.noData": "No usage history yet",
+  "panel.noDataHelp": "Install the Venice or LiteLLM monitor plugin; its usage history shows up here after the first refresh.",
+  "panel.refreshing": "Refreshing…",
+  "panel.updatedJustNow": "Updated just now",
+  "panel.updatedMinutes": {
+    "one": "Updated %1 minute ago",
+    "other": "Updated %1 minutes ago"
+  },
+  "panel.updatedHours": {
+    "one": "Updated %1 hour ago",
+    "other": "Updated %1 hours ago"
+  },
+  "panel.updatedDays": {
+    "one": "Updated %1 day ago",
+    "other": "Updated %1 days ago"
+  },
+  "action.refresh": "Refresh",
+  "range.week": "Week",
+  "range.month": "Month",
+  "range.quarter": "Quarter",
+  "range.year": "Year",
+  "stat.tokens": "Tokens",
+  "stat.requests": "Requests",
+  "stat.cost": "Cost",
+  "stat.perDay": "Per day",
+  "stat.activeDays": {
+    "one": "%1 active day",
+    "other": "%1 active days"
+  },
+  "trend.flat": "± 0%",
+  "trend.percent": "%1%",
+  "previous.week": "Previous 7 days: %1",
+  "previous.month": "Previous 30 days: %1",
+  "previous.quarter": "Previous 13 weeks: %1",
+  "previous.year": "Previous 12 months: %1",
+  "section.balance": "Balance",
+  "section.byDay": "Tokens by day",
+  "section.byWeek": "Tokens by week",
+  "section.byMonth": "Tokens by month",
+  "section.byModel": "Tokens by model",
+  "balance.credits": "Credits left",
+  "balance.spent": "%1 spent of %2",
+  "balance.spentEstimated": "%1 spent of %2 · estimated",
+  "chart.today": "Today",
+  "chart.thisWeek": "This week",
+  "chart.thisMonth": "This month",
+  "chart.peak": "Peak %1 · %2",
+  "tooltip.tokens": {
+    "one": "%1 token",
+    "other": "%1 tokens"
+  },
+  "tooltip.requests": {
+    "one": "%1 request",
+    "other": "%1 requests"
+  },
+  "tooltip.notRecorded": "Not recorded",
+  "tooltip.partial": "%1 of %2 days recorded",
+  "model.count": {
+    "one": "%1 model",
+    "other": "%1 models"
+  },
+  "model.share": "%1% of tokens",
+  "model.split": "In %1 · out %2 · cache read %3 · cache write %4",
+  "model.more": {
+    "one": "+%1 more model · %2",
+    "other": "+%1 more models · %2"
+  },
+  "caption.week": "Rolling 7 days · %1 – %2",
+  "caption.month": "Rolling 30 days · %1 – %2",
+  "caption.quarter": "13 calendar weeks · %1 – %2",
+  "caption.year": "12 calendar months · %1 – %2",
+  "caption.note": "Totals sum the days the chart shows."
+}
